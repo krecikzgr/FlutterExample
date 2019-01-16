@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:my_first_app/MainListElement.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -18,12 +18,11 @@ class MyApp extends StatelessWidget {
           title: new Text("The title for app bar"),
         ),
         //Add the body of the layout
-        body: ListView.builder(
+        body: 
+         ListView.builder(
           itemCount: 100,
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text("Some item"),
-            );
+            return MainListElement("title", "subtitle");
           }
         ),
         ),
