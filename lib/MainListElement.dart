@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/ModelClass.dart';
 import 'package:my_first_app/DetailsScreen.dart';
-//Brac
+
+
 class MainListElement extends StatelessWidget {
   final MyModel item;
 
