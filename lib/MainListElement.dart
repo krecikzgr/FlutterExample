@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
-
+import 'package:my_first_app/ModelClass.dart';
+import 'package:my_first_app/DetailsScreen.dart';
 //Brac
 class MainListElement extends StatelessWidget {
-  final String title;
-  final String subtitle;
+  final MyModel item;
 
-  MainListElement(this.title, this.subtitle);
+
+  MainListElement(this.item);
 
   @override
   Widget build(BuildContext context) {
     return new ListTile(
         leading: CircleAvatar(
-          child: Text(title),
+          child: Text(item.title),
         ),
-        title:  Text(title),
-        subtitle: Text(subtitle),
+        title:  Text(item.title),
+        subtitle: Text(item.description),
+        onTap:() { Navigator.push(context,
+        MaterialPageRoute(
+          builder: (context) => DetailScreen(item),
+        ),
+        );
+      },
     );
   }
 }

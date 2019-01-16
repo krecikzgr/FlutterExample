@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/MainListElement.dart';
+import 'package:my_first_app/ModelClass.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -22,8 +24,8 @@ class MyApp extends StatelessWidget {
          ListView.builder(
           itemCount: 100,
           itemBuilder: (context, index) {
-            return MainListElement("title", "subtitle");
-          }
+            return MainListElement(MyModel("Title", "Description of item number $index" ));
+          },
         ),
         ),
       );
