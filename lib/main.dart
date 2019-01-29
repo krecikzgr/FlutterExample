@@ -39,7 +39,9 @@ class MyApp extends StatelessWidget {
       );
   }
 }
+//EXPLENATION WHY DOES IT WORK
 
+https://stackoverflow.com/questions/44004451/navigator-operation-requested-with-a-context-that-does-not-include-a-navigator/51292613#51292613
 class MyFab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
