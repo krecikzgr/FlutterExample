@@ -4,6 +4,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:my_first_app/client_model.dart';
 
+
 class DBProvider {
   DBProvider._();
   static final DBProvider db = DBProvider._();
