@@ -2,27 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:my_first_app/client_model.dart';
 
 
-class AddClientScreen extends StatelessWidget {
+class AddClientScreen extends StatefulWidget {
+
+  @override
+  _AddClientScreenSate createState() => _AddClientScreenSate();
+}
+
+class _AddClientScreenSate extends State<AddClientScreen> {
+  final clientNameController = TextEditingController();
+
+  @override
+  void dispose() {
+    clientNameController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Use the Todo to create our UI
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add new element screen"),
+        title: Text("Retrieve Text Input"),
       ),
-      body: Center(
-          child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('Details Screen',
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.red
+      body: Column(
+        children: <Widget>[
+          TextField(
+            decoration:  InputDecoration(
+              hintText: 'Client Name'
             ),
-            ),
-          ],
-        )
-      )
+            controller: clientNameController,
+          )
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          return showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                content: Text(clientNameController.text),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
