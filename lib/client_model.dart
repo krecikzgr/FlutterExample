@@ -14,4 +14,15 @@ class Client {
         email: json['email']
       );
   } 
+
+  Map<String, dynamic> toMap() {
+    var map = <String, dynamic> {
+      "name":name,
+      "company": company,
+      "email": email,
+      "id": id
+    };
+    return map;
+  }
 }
+
