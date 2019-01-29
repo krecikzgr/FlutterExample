@@ -57,6 +57,16 @@ class MyFab extends StatelessWidget {
     );
   }
 }
+          // return showDialog(
+          //   context: context,
+          //   builder: (context) {
+          //     return AlertDialog(
+          //       // Retrieve the text the user has typed in using our
+          //       // TextEditingController
+          //       content: Text(myController.text),
+          //     );
+          //   },
+          // )
 
 Future<List<Client>> fetchObjects() async {
   final response =
