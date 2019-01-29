@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/client_model.dart';
-
+import 'package:my_first_app/Database.dart';
 
 class AddClientScreen extends StatefulWidget {
 
@@ -35,16 +35,13 @@ class _AddClientScreenSate extends State<AddClientScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {
-          return showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                content: Text(clientNameController.text),
-              );
-            },
-          );
-        },
+        onPressed: () async {
+          Client client = new Client(company: "testCompany",email: "test@email.com",name: "Name");
+          await DBProvider.db.createClient(client);
+          setState(() {
+            
+          });
+        }
       ),
     );
   }

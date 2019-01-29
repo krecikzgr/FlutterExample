@@ -1,28 +1,41 @@
-class Client {
-  final int id;
-  final String name;
-  final String company;
-  final String email;
+// Generate Our model
 
-  Client(this.id, {this.name, this.company, this.email});
+import 'dart:convert';
 
-  factory Client.fromJson(Map<String, dynamic> json) {
-    return Client(
-        json['index'],
-        name: json['name'],
-        company: json['company'],
-        email: json['email']
-      );
-  } 
-
-  Map<String, dynamic> toMap() {
-    var map = <String, dynamic> {
-      "name":name,
-      "company": company,
-      "email": email,
-      "id": id
-    };
-    return map;
-  }
+Client clientFromJson(String str) {
+    final jsonData = json.decode(str);
+    return Client.fromJson(jsonData);
 }
 
+String clientToJson(Client data) {
+    final dyn = data.toJson();
+    return json.encode(dyn);
+}
+
+class Client {
+    int id;
+    String name;
+    String company;
+    String email;
+
+    Client({
+        this.id,
+        this.name,
+        this.company,
+        this.email,
+    });
+
+    factory Client.fromJson(Map<String, dynamic> json) => new Client(
+        id: json["id"],
+        name: json["name"],
+        company: json["company"],
+        email: json["email"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "company": company,
+        "email": email,
+    };
+}

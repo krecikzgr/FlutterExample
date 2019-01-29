@@ -14,6 +14,8 @@ environment:
 
 dependencies:
   http: ^0.12.0 
+  sqflite: any
+  path_provider: any
   flutter:
     sdk: flutter
 
