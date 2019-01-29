@@ -45,10 +45,12 @@ initDB() async {
     return raw;
   }
 
-  getAllClients() async {
+  get getAllClients async {
+    print("Some start action");
     final db = await database;
     var res = await db.query("Client");
     List<Client> list =  res.isNotEmpty ? res.map((client)=>Client.fromJson(client)).toList() : [];
+    print(list.length);
     return list;
   }
 

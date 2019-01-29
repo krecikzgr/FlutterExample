@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:my_first_app/add_client_screen.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'package:my_first_app/database.dart';
 
 void main() => runApp(MyApp());
 
@@ -70,7 +71,8 @@ class MyFab extends StatelessWidget {
           // )
 
 Future<List<Client>> fetchObjects() async {
-  final response =
+  final response = await DBProvider.db.getAllClients;
+  return response;
   await http.get('http://www.mocky.io/v2/5c4175e20f00004b3fe7b7f2');
   if (response.statusCode == 200) {
      final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
