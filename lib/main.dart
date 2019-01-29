@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_first_app/list_element.dart';
 import 'package:my_first_app/client_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_first_app/add_client_screen.dart';
 import 'dart:async';
 import 'dart:convert';
 
@@ -32,12 +33,28 @@ class MyApp extends StatelessWidget {
                   }
                 ) : Center(child: CircularProgressIndicator());
           },
-        )
+        ),
+        floatingActionButton: MyFab()
         ),
       );
   }
 }
 
+class MyFab extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      child: Icon(Icons.add),
+      onPressed: () {
+        Navigator.push(context,
+         MaterialPageRoute(
+           builder: (context) => AddClientScreen()
+         )
+         );
+      }
+    );
+  }
+}
 
 Future<List<Client>> fetchObjects() async {
   final response =
