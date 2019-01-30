@@ -18,26 +18,39 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar:  AppBar(
-          title: Text("Some title"),
-        ),
-        body: FutureBuilder<List<Client>>(
-          future: fetchObjects(),
-          builder: (context, snapshot){
-            if(snapshot.hasError) print(snapshot.error);
-            return snapshot.hasData ?
-                ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (context, index) {
-                    return ListElement(snapshot.data[index]);
-                  }
-                ) : Center(child: CircularProgressIndicator());
-          },
-        ),
-        floatingActionButton: MyFab()
-        ),
+      home: ClientsList()
       );
+  }
+}
+
+class ClientsList extends StatefulWidget {
+  @override
+  _ClientsListState createState() => _ClientsListState();
+}
+
+class _ClientsListState extends State<ClientsList> {
+
+@override
+  Widget build(BuildContext context) {
+  return Scaffold(
+          appBar:  AppBar(
+            title: Text("Some title"),
+          ),
+          body: FutureBuilder<List<Client>>(
+            future: fetchObjects(),
+            builder: (context, snapshot){
+              if(snapshot.hasError) print(snapshot.error);
+              return snapshot.hasData ?
+                  ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      return ListElement(snapshot.data[index]);
+                    }
+                ) : Center(child: CircularProgressIndicator());
+            },
+          ),
+      floatingActionButton: MyFab()
+    );
   }
 }
 //EXPLENATION WHY DOES IT WORK
@@ -46,13 +59,15 @@ class MyApp extends StatelessWidget {
 //https://stackoverflow.com/questions/44004451/navigator-operation-requested-with-a-context-that-does-not-include-a-navigator/51292613#51292613
 class MyFab extends StatelessWidget {
 
+
+
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       child: Icon(Icons.add),
       onPressed: () {
         Navigator.push(context,
-         MaterialPageRoute(
+        MaterialPageRoute(
            builder: (context) => AddClientScreen()));
       }
     );
