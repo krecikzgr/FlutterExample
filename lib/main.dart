@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
 //https://proandroiddev.com/a-deep-dive-into-floatingactionbutton-in-flutter-bf95bee11627
 //https://stackoverflow.com/questions/44004451/navigator-operation-requested-with-a-context-that-does-not-include-a-navigator/51292613#51292613
 class MyFab extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
@@ -52,9 +53,7 @@ class MyFab extends StatelessWidget {
       onPressed: () {
         Navigator.push(context,
          MaterialPageRoute(
-           builder: (context) => AddClientScreen()
-         )
-         );
+           builder: (context) => AddClientScreen()));
       }
     );
   }
@@ -71,14 +70,18 @@ class MyFab extends StatelessWidget {
           // )
 
 Future<List<Client>> fetchObjects() async {
-  final response = await DBProvider.db.getAllClients;
-  return response;
-  await http.get('http://www.mocky.io/v2/5c4175e20f00004b3fe7b7f2');
-  if (response.statusCode == 200) {
-     final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
-    return parsed.map<Client>((json) => Client.fromJson(json)).toList();
-  } else {
-    // If that call was not successful, throw an error.
-    throw Exception('Failed to load post');
+  try {
+    final response = await DBProvider.db.getAllClients;
+    return response;
+  } on Exception {
+    print(Exception);
   }
+  // await http.get('http://www.mocky.io/v2/5c4175e20f00004b3fe7b7f2');
+  // if (response.statusCode == 200) {
+  //    final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
+  //   return parsed.map<Client>((json) => Client.fromJson(json)).toList();
+  // } else {
+  //   // If that call was not successful, throw an error.
+  //   throw Exception('Failed to load post');
+  // }
 }
